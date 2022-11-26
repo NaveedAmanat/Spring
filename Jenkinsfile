@@ -34,7 +34,7 @@ pipeline{
         }
         stage('Trigger Manifest'){
             steps{
-                build job: 'spring_artifect', parameters: [string(name: 'IMAGE_TAG', value: env.BUILD_NUMBER)]
+                build job: 'SpringPipelineArtifact', parameters: [string(name: 'IMAGE_TAG', value: env.BUILD_NUMBER)]
             }
         }
     }
