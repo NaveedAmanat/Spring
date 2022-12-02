@@ -21,13 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bezkoder.spring.jpa.h2.model.Tutorial;
 import com.bezkoder.spring.jpa.h2.repository.TutorialRepository;
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
 
     @Autowired
     TutorialRepository tutorialRepository;
+    
+    
+    @GetMapping("/")
+    public String saveDepartment() {
+        return  "Hello Spring boot";
+    }
 
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
