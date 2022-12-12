@@ -26,7 +26,7 @@ pipeline{
         stage('Push Iamge to Docker Hub'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'DOCKER_HUB_KEY', variable: 'DOCKER_HUB')]) {
+                    withCredentials([string(credentialsId: 'DOCKER_HUB', variable: 'DOCKER_HUB')]) {
                         sh 'echo login to docker hub'
                     }
                 }
