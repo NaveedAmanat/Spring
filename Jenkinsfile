@@ -19,7 +19,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t naveed0004/spring:${BUILD_NUMBER} .'
+                    sh 'sudo docker build -t naveed0004/spring:${BUILD_NUMBER} .'
                 }
             }
         }
