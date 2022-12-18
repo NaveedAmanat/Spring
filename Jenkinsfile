@@ -12,14 +12,14 @@ pipeline{
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/NaveedAmanat/Spring.git']]])
+             //   checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/NaveedAmanat/Spring.git']]])
                 sh 'mvn clean install'
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'sudo docker build -t naveed0004/spring:${BUILD_NUMBER} .'
+                    sh 'sudo docker build -t naveed0004/spring:v{IMAGE_TAG} .'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline{
         }
         stage('Trigger Manifest'){
             steps{
-                build job: 'SpringPipelineArtifact', parameters: [string(name: 'IMAGE_TAG', value: env.BUILD_NUMBER)]
+                build job: 'SpringPipelineArtifact', parameters: [string(name: 'IMAGE_TAG', value: ${IMAGE_TAG})]
             }
         }
     }
