@@ -19,7 +19,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'sudo docker build -t naveed0004/spring:env.IMAGE_TAG .'
+                    sh 'sudo docker build -t naveed0004/spring:${IMAGE_TAG} .'
                 }
             }
         }
@@ -34,6 +34,7 @@ pipeline{
         }
         stage('Trigger Manifest'){
             steps{
+                sh 'echo env.IMAGE_TAG'
                 build job: 'SpringPipelineArtifact', parameters: [string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)]
             }
         }
